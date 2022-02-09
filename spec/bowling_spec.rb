@@ -5,10 +5,12 @@ describe Bowling do
     input1 = "X X X X X X X X X X X X"
     input2 = "9- 9- 9- 9- 9- 9- 9- 9- 9- 9-"
     input3 = "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5"
+    input4 = "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5-"
 
     result1 = 300
     result2 = 90
     result3 = 150
+    result4 = 140
 
 
     it "convert score into array" do
@@ -91,11 +93,13 @@ describe Bowling do
         testScores1 = bowling.score_game(input1)
         testScores2 = bowling.score_game(input2)
         testScores3 = bowling.score_game(input3)
+        testScores4 = bowling.score_game(input4)
 
         # Assert
         expect(testScores1).to eq(result1)
         expect(testScores2).to eq(result2)
         expect(testScores3).to eq(result3)
+        expect(testScores4).to eq(result4)
     end
 
 end 

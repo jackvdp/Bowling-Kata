@@ -1,10 +1,17 @@
-class Bowling    
+class Bowling
+    
+    def score_game(scores)
+        score_array = convert_score_into_array(scores)
+        frames_array = convert_frame_into_array(score_array)
+        score_frames(frames_array)
+    end 
+
     def convert_score_into_array(input)
         input.split(" ")
     end
     
-    def convert_frame_into_array(input1)
-        input1.map { |frame| frame.split("")}
+    def convert_frame_into_array(input)
+        input.map { |frame| frame.split("")}
     end
 
     def score_frames(frames)
@@ -12,23 +19,17 @@ class Bowling
         score = 0
 
         for i in 0..9 do
-            frame = frames[i]
-            nextFrame = frames[i+1]
-            nextNextFrame = frames[i+2]
+            balls = [frames[i], frames[i+1], frames[i+2]].compact.flatten
 
-            if frame == ["X"]
+            if balls[0] == "X"
                 score += 10
-                
-                gettingNextFourBalls = nextFrame + nextNextFrame 
-
-                score += convert_symbol(gettingNextFourBalls[0])
-                score += convert_symbol(gettingNextFourBalls[1])
-
-            elsif frame[1] == "/"
+                score += convert_symbol(balls[1])
+                score += convert_symbol(balls[2])
+            elsif balls[1] == "/"
                 score += 10
-                score += convert_symbol(nextFrame[0])
+                score += convert_symbol(balls[2])
             else
-                score += (convert_symbol(frame[0]) + convert_symbol(frame[1]))
+                score += (convert_symbol(balls[0]) + convert_symbol(balls[1]))
             end
 
         end
@@ -51,12 +52,5 @@ class Bowling
         end
 
     end
-
-   def score_game(scores)
-
-    convert_array = convert_score_into_array(scores)
-    scores_array = convert_frame_into_array(convert_array)
-    score_frames(scores_array)
-   end 
 
 end
